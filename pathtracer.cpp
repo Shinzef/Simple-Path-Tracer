@@ -129,10 +129,9 @@ Vector castRay(const Vector &orig, const Vector &dir, const std::vector<Sphere> 
 			for ( Light l : lights)
 			{
 				Vector lightDirection = (l.position - point).normalized();
-				Vector temp;
 
 				diffuseLightIntensity += l.intensity * std::max(0.0, dot(lightDirection, N));
-				specularLightIntensity += l.intensity * pow(std::max(0.0, dot(temp, ~reflect(lightDirection, N))), s.material.specularExponent);
+				specularLightIntensity += l.intensity * pow(std::max(0.0, dot(lightDirection, ~reflect(lightDirection, N))), s.material.specularExponent);
 
 				
 			}
